@@ -12,6 +12,7 @@ urlpatterns = [
     path('register/farmer/', register_farmer, name='register_farmer'),
     path('register/msme/', register_msme, name='register_msme'),
     path('register/household/', register_household, name='register_household'),
+    # test
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
