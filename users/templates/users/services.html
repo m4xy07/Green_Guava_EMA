@@ -1,0 +1,38 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container my-5">
+    <h2 class="text-center mb-4">Register as:</h2>
+
+    <div class="row justify-content-center">
+        <!-- Farmer Card -->
+        <div class="col-md-4 text-center">
+            <div class="card shadow-sm border rounded-lg p-3">
+                <img src="{% static 'images/farmer.jpg' %}" alt="Farmer" class="img-fluid rounded mb-3" style="width: 300px; height: 200px;">
+                <h5>Farmer</h5>
+                <a href="{% url 'register_farmer' %}" class="btn btn-success btn-block">Farmer</a>
+            </div>
+        </div>
+
+        <!-- MSME Card -->
+        <div class="col-md-4 text-center">
+            <div class="card shadow-sm border rounded-lg p-3">
+                <img src="{% static 'images/msme.jpg' %}" alt="MSME" class="img-fluid rounded mb-3" style="width: 300px; height: 200px;">
+                <h5>MSME</h5>
+                <a href="{% url 'register_msme' %}" class="btn btn-success btn-block">MSME</a>
+            </div>
+        </div>
+
+        <!-- Household Card -->
+        <div class="col-md-4 text-center">
+            <div class="card shadow-sm border rounded-lg p-3">
+                <img src="{% static 'images/household.jpg' %}" alt="Household" class="img-fluid rounded mb-3" style="width: 300px; height: 200px;">
+                <h5>Household</h5>
+                <a href="{% url 'register_household' %}" class="btn btn-success btn-block">Household</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

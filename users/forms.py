@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
-from .models import Profile
+from .models import *
 
 
 class RegisterForm(UserCreationForm):
@@ -86,3 +86,35 @@ class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['avatar', 'bio']
+
+from django import forms
+from .models import FarmerProfile
+#
+# class FarmerProfileForm(forms.ModelForm):
+#     class Meta:
+#         model = FarmerProfile
+#         fields = [
+#             'land_area', 'crop_type', 'farming_practices', 'soil_type',
+#             'irrigation_method', 'fertilizer_usage', 'cover_crops',
+#             'tillage_practices', 'carbon_credits', 'address', 'state', 'district'
+#         ]
+#         widgets = {
+#             'address': forms.Textarea(attrs={'rows': 2}),
+#             'carbon_credits': forms.NumberInput(attrs={'step': '0.01'}),
+#         }
+#
+#
+# from django import forms
+# from .models import FarmerProfile
+
+class FarmerProfileForm(forms.ModelForm):
+    class Meta:
+        model = FarmerProfile
+        fields = [
+            'land_area', 'crop_type', 'farming_practices', 'soil_type',
+            'irrigation_method', 'fertilizer_usage', 'cover_crops',
+            'tillage_practices', 'carbon_credits', 'address', 'state', 'district'
+        ]
+        widgets = {
+            'address': forms.Textarea(attrs={'rows': 2}),
+        }
