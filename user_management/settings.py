@@ -30,8 +30,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-STATIC_URL = '/static/'
+ALLOWED_HOSTS = ['sea-turtle-app-on87h.ondigitalocean.app', 'greenguavaco.online']
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
