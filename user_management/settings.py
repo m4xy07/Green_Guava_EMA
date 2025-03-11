@@ -89,11 +89,11 @@ WSGI_APPLICATION = 'user_management.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'test12',
-        'USER': 'shardulsingh',
-        'PASSWORD': 'your_password',  # Replace with your actual password
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.getenv('DB_NAME', 'test12'),
+        'USER': os.getenv('DB_USER', 'shardulsingh'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'your_password'),  # Replace with your actual password
+        'HOST': os.getenv('DB_HOST', 'localhost'),
+        'PORT': os.getenv('DB_PORT', '5432'),
     }
 }
 
