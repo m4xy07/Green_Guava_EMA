@@ -85,17 +85,17 @@ WSGI_APPLICATION = 'user_management.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-#
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('DB_NAME', 'test12'),
-#         'USER': os.getenv('DB_USER', 'shardulsingh'),
-#         'PASSWORD': os.getenv('DB_PASSWORD', 'your_password'),  # Replace with your actual password
-#         'HOST': os.getenv('DB_HOST', 'localhost'),
-#         'PORT': os.getenv('DB_PORT', '5432'),
-#     }
-# }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME', 'test12'),
+        'USER': os.getenv('DB_USER', 'shardulsingh'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'your_password'),  # Replace with your actual password
+        'HOST': os.getenv('DB_HOST', 'localhost'),
+        'PORT': os.getenv('DB_PORT', '5432'),
+    }
+}
 #
 # DATABASES = {
 #     'default': {
@@ -109,17 +109,17 @@ WSGI_APPLICATION = 'user_management.wsgi.application'
 # }
 
 
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'test13',
-        'USER': 'shardulsingh',
-        'PASSWORD': 'your_password',  # Replace with your actual password
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
+#
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'test13',
+#         'USER': 'shardulsingh',
+#         'PASSWORD': 'your_password',  # Replace with your actual password
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
