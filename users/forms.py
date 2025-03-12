@@ -118,3 +118,27 @@ class FarmerProfileForm(forms.ModelForm):
         widgets = {
             'address': forms.Textarea(attrs={'rows': 2}),
         }
+
+
+class VideoUploadForm(forms.ModelForm):
+    class Meta:
+        model = Video
+        fields = ['title', 'video_file']
+
+    def clean_video_file(self):
+        video = self.cleaned_data.get('video_file')
+
+        if not video:
+            raise forms.ValidationError("No video file uploaded!")
+
+        # ✅ Validate file size (e.g., max 50MB)
+        max_size = 200 * 1024 * 1024  # 50MB
+        if video.size > max_size:
+            raise forms.ValidationError("File size exceeds the 50MB limit!")
+
+        # ✅ Validate file type (only MP4, AVI, MKV, MOV)
+        valid_extensions = ['mp4', 'avi', 'mkv', 'mov']
+        if not video.name.split('.')[-1].lower() in valid_extensions:
+            raise forms.ValidationError("Invalid file format! Only MP4, AVI, MKV, and MOV are allowed.")
+
+        return video

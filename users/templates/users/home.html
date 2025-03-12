@@ -40,12 +40,17 @@
 <div class="container vh-100 d-flex align-items-center justify-content-center bg-light">
     <div class="card shadow-lg p-5" style="max-width: 700px; border-radius: 20px;">
 
-        <!-- Featured Image Section -->
+        <!-- Featured Video Section -->
         <div class="container text-center my-5">
-            <img src="{% static 'images/middle_image.jpg' %}"
-                 alt="Featured Image"
-                 class="middle-image"
-                 style="width: 100%; max-height: 25vh; object-fit: contain; border-radius: 20px; margin-bottom: 30px;">
+            {% if video %}
+                <video width="100%" height="auto" controls autoplay style="border-radius: 20px;">
+{#                    <source src="{{ video.video.url }}" type="video/mp4">#}
+                    <source src="{{ video.video_file.url }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            {% else %}
+                <p>No video uploaded yet.</p>
+            {% endif %}
         </div>
 
         <!-- Heading & Description -->

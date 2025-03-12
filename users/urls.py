@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', home, name='users-home'),
+    # path('upload/', upload_video, name='upload_video'),  # Upload page
     path('register/', RegisterView.as_view(), name='users-register'),
     path('profile/', profile, name='users-profile'),
     # path('services/', RegistrationOptionsView, name='services'),
@@ -13,6 +14,9 @@ urlpatterns = [
     path('register/msme/', register_msme, name='register_msme'),
     path('register/household/', register_household, name='register_household'),
     # test
+    path('upload/', upload_video, name='upload_video'),
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+

@@ -1,0 +1,18 @@
+{% extends "users/base.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <h2 class="text-center">Upload a Video</h2>
+    <form method="POST" enctype="multipart/form-data" class="mt-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Upload Video</button>
+    </form>
+</div>
+{% for video in videos %}
+    <video width="500" controls>
+        <source src="{{ video.video_file.url }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+{% endfor %}
+{% endblock content %}

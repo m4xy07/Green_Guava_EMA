@@ -6,7 +6,9 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.views import View
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import RegisterForm, LoginForm, UpdateUserForm, UpdateProfileForm
+from django.views.decorators.csrf import csrf_exempt
+
+from .forms import *
 from .models import *
 
 def home(request):
@@ -156,12 +158,23 @@ def register_msme(request):
 @login_required()
 def register_household(request):
     return render(request, 'users/register_household.html')
+#
+# @login_required()
+# def home(request):
+#     if request.user.is_authenticated:
+#         return render(request, 'users/home.html')
+#     return redirect('login')
 
-@login_required()
+@login_required
 def home(request):
-    if request.user.is_authenticated:
-        return render(request, 'users/home.html')
-    return redirect('login')
+    video = Video.objects.last()  # Fetch the latest uploaded video
+
+    # Existing functionality (modify as needed)
+    if request.method == "POST":
+        # Example: Handle form submissions or other logic
+        messages.success(request, "Your request was processed successfully.")
+
+    return render(request, 'users/home.html', {'video': video})
 
 @login_required
 def farmer_registration(request):
@@ -184,26 +197,19 @@ def farmer_registration(request):
         form = FarmerProfileForm()
 
     return render(request, 'users/register_farmer.html', {'form': form})
-#
-# @login_required
-# def register_farmer(request):
-#     # Check if a FarmerProfile already exists for this user
-#     if FarmerProfile.objects.filter(user=request.user).exists():
-#         messages.info(request, "Your application is pending verification.")
-#         return redirect('home')  # Redirect to home with message
-#
-#     if request.method == 'POST':
-#         form = FarmerProfileForm(request.POST)
-#         if form.is_valid():
-#             farmer_profile = form.save(commit=False)
-#             farmer_profile.user = request.user
-#             farmer_profile.verification_status = "pending"
-#             farmer_profile.save()
-#             messages.success(request, "Your form has been submitted successfully. Awaiting approval.")
-#             return redirect('home')  # Redirect to home page
-#         else:
-#             messages.error(request, "There was an error in your submission. Please try again.")
-#     else:
-#         form = FarmerProfileForm()
-#
-#     return render(request, 'users/register_farmer.html', {'form': form})
+
+@csrf_exempt
+def upload_video(request):
+    if request.method == 'POST':
+        form = VideoUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Video uploaded successfully!")
+            return redirect('upload_video')  # Redirect to prevent duplicate form submissions
+        else:
+            messages.error(request, "Error uploading video. Please check the file format and size.")
+    else:
+        form = VideoUploadForm()
+
+    videos = Video.objects.all()  # Fetch all uploaded videos
+    return render(request, 'users/upload_video.html', {'form': form, 'videos': videos})
